@@ -1,4 +1,4 @@
-# Lab 4: IT Helpdesk Ticketing System — osTicket Deployment
+# Lab 2 : IT Helpdesk Ticketing System  osTicket Deployment
 
 ![Status](https://img.shields.io/badge/status-complete-brightgreen)
 ![Platform](https://img.shields.io/badge/platform-Ubuntu%2022.04%20ARM64-orange)
@@ -11,7 +11,7 @@
 
 ## Overview
 
-This lab simulates a real-world IT helpdesk environment by deploying and configuring **osTicket** — an open-source ticketing system — on a self-hosted Ubuntu Server virtual machine running inside **UTM on macOS**. The goal was to demonstrate practical skills in Linux server administration, LAMP stack deployment, helpdesk configuration, and end-to-end IT service management (ITSM) workflows including ticket submission, assignment, resolution, and formal incident documentation.
+This lab simulates a real world IT helpdesk environment by deploying and configuring **osTicket**,an open source ticketing system on a self hosted Ubuntu Server virtual machine running inside **UTM on macOS**. The goal was to demonstrate practical skills in Linux server administration, LAMP stack deployment, helpdesk configuration, and end to end IT service management (ITSM) workflows including ticket submission, assignment, resolution, and formal incident documentation.
 
 ---
 
@@ -27,20 +27,17 @@ osticket-helpdesk-lab/
 │
 └── screenshots/
     ├── 01-utm-vm-setup.png
-    ├── 02-apache-running.png
-    ├── 03-mysql-database-created.png
-    ├── 04-osticket-installer-success.png
-    ├── 05-admin-panel-dashboard.png
-    ├── 06-departments-config.png
-    ├── 07-sla-plans-config.png
-    ├── 08-help-topics-config.png
-    ├── 09-agent-accounts.png
-    ├── 10-end-user-portal.png
-    ├── 11-ticket-submitted.png
-    ├── 12-open-ticket-queue.png
-    ├── 13-ticket-assigned-to-agent.png
-    ├── 14-internal-agent-notes.png
-    └── 15-resolved-tickets-view.png
+    ├── 02-mysql-database-created.png
+    ├── 03-osticket-installer-success.png
+    ├── 04-admin-panel-dashboard.png
+    ├── 05-sla-plans-config.png
+    ├── 06-help-topics-config.png
+    ├── 07-agent-accounts.png
+    ├── 08-ticket-submitted.png
+    ├── 09-open-ticket-queue.png
+    ├── 10-ticket-assigned-to-agent.png
+    ├── 11-internal-agent-notes.png
+    └── 12-resolved-tickets-view.png
 ```
 
 ---
@@ -57,7 +54,6 @@ osticket-helpdesk-lab/
 | Language       | PHP 8.1                           |
 | Ticketing App  | osTicket v1.18.1                  |
 | Network        | UTM Shared Network + Port Forward |
-| Access URL     | http://localhost/osticket         |
 
 ---
 
@@ -71,7 +67,7 @@ osticket-helpdesk-lab/
   - **3 Departments:** IT Support, Systems Admin, Network
   - **3 SLA Tiers:** Sev-1 Critical (1hr/24-7), Sev-2 High (4hr/24-7), Sev-3 Normal (8hr/business hours)
   - **5 Help Topics:** Password Reset, Software Issue, Hardware Failure, New User Access Request, Network Connectivity
-  - **3 Agent Accounts** with role-based department access (All Access)
+  - **3 Agent Accounts** with role based department access (All Access)
 - Submitted 3 mock tickets as end users through the user portal
 - Assigned tickets to agents and departments through the agent panel
 - Documented internal troubleshooting notes for all 3 tickets
@@ -84,7 +80,7 @@ osticket-helpdesk-lab/
 - Linux CLI administration (package management, file permissions, service control)
 - LAMP stack deployment and configuration from scratch
 - MySQL database creation, user management, and privilege assignment
-- Web application deployment and post-install security hardening
+- Web application deployment and post install security hardening
 - ITSM concepts: SLA tiers, ticket lifecycle, department routing, escalation
 - Role-based access control (RBAC) for helpdesk agents
 - IT documentation: internal agent notes and formal incident reporting
@@ -153,7 +149,7 @@ sudo chmod 0666 ost-config.php
 
 Ran web installer at `http://localhost/osticket/setup` and completed setup wizard using MySQL credentials.
 
-Post-install security:
+Post install security:
 
 ```bash
 sudo rm -rf /var/www/html/osticket/setup
@@ -189,9 +185,9 @@ Submitted 3 tickets as end users via `http://localhost/osticket`. Logged into th
 
 | Ticket ID  | Issue                        | Department    | SLA Tier | Resolution Time | Status      |
 |------------|------------------------------|---------------|----------|-----------------|-------------|
-| TKT-0001   | Password Reset               | IT Support    | Sev-2    | 25 minutes      | Resolved ✅ |
-| TKT-0002   | Can't Access Shared Drive    | IT Support    | Sev-3    | 35 minutes      | Resolved ✅ |
-| TKT-0003   | New Employee Account Setup   | Systems Admin | Sev-3    | 45 minutes      | Resolved ✅ |
+| TKT-248012   | Password Reset               | IT Support    | Sev-2    | 25 minutes      | Resolved ✅ |
+| TKT-481127   | Can't Access Shared Drive    | IT Support    | Sev-3    | 35 minutes      | Resolved ✅ |
+| TKT-304502  | New Employee Account Setup   | Systems Admin | Sev-3    | 45 minutes      | Resolved ✅ |
 
 ---
 
@@ -206,7 +202,7 @@ Submitted 3 tickets as end users via `http://localhost/osticket`. Logged into th
 | PHP extensions missing on osTicket install | Installed missing extensions individually: `sudo apt install php-[extension] -y` |
 | Config file permission error during install | Set `chmod 0666` on `ost-config.php` before install, locked to `0644` after |
 | Ubuntu ISO architecture mismatch | Used ARM64 Ubuntu Server ISO to match Apple Silicon (M-series) chip |
-| Tickets not visible in agent panel | Fixed agent role — set Primary Department and all Extended Access departments to **All Access** in Admin Panel → Agents |
+| Tickets not visible in agent panel | Fixed agent role  set Primary Department and all Extended Access departments to **All Access** in Admin Panel → Agents |
 
 ---
 
@@ -223,10 +219,10 @@ Submitted 3 tickets as end users via `http://localhost/osticket`. Logged into th
 ## Key Takeaways
 
 - Deploying a LAMP stack manually builds a strong foundation for understanding how most enterprise web-based IT tools are hosted and maintained
-- osTicket's SLA tiers, department routing, and role-based access mirror real enterprise tools like Zendesk, ServiceNow, and Jira Service Management
-- File permissions are the most common source of web app deployment failures on Linux — understanding `chown` and `chmod` is essential
+- osTicket's SLA tiers, department routing, and role based access mirror real enterprise tools like Zendesk, ServiceNow, and Jira Service Management
+- File permissions are the most common source of web app deployment failures on Linux understanding `chown` and `chmod` is essential
 - MySQL privilege and password policy errors are extremely common in real IT environments — knowing how to troubleshoot them is a practical and valuable skill
-- Proper documentation at every step — from deployment to ticket resolution — is as important as the technical work itself in any IT support role
+- Proper documentation at every step from deployment to ticket resolution is as important as the technical work itself in any IT support role
 
 ---
 
@@ -236,5 +232,5 @@ Submitted 3 tickets as end users via `http://localhost/osticket`. Logged into th
 
 ---
 
-*This project was completed as part of a self-directed IT Support & Systems Administration home lab series.*
+*This project was completed as part of a self directed IT Support & Systems Administration home lab series.*
 
