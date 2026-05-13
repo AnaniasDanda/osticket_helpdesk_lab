@@ -213,7 +213,7 @@ Submitted 3 tickets as end users via `http://localhost/osticket`. Logged into th
 | [`incident-report.md`](./incident-report.md) | Formal incident report for TKT-0002 (Shared Drive Access) |
 | [`agent-notes.md`](./agent-notes.md) | Internal troubleshooting notes for all 3 simulated tickets |
 | [`sla-and-departments-config.md`](./sla-and-departments-config.md) | Full SLA and department configuration reference |
-
+| [`images.placeholder.md`](images) | Full Screenshots reference for every step|
 ---
 
 ## Key Takeaways
